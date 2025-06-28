@@ -1,0 +1,19 @@
+\chapter{算法}
+尝试插入算法（见\autoref{alg:alg1}）
+
+\begin{algorithm}[h]
+    \setstretch{1.3}
+    \textbf{Input:} 两个数 $n$, $k$
+    \begin{algorithmic}[1]
+        \STATE 初始化 $s$ 为 $0$ \label{algline:init}
+        \FOR{$i = 1,2,...,k$}    \COMMENT{\textbf{循环}}
+        \label{algline:for} 
+        \IF {$i\;\% \;5\neq 0$}
+        \STATE $s=s+n+i$
+        \ENDIF 
+        \ENDFOR \label{algline:endfor}
+        \STATE \textbf{return} $s$ \label{algline:return} 
+    \end{algorithmic}
+    \caption{sum($n$, $k$)}
+    \label{alg:alg1}
+\end{algorithm}
