@@ -1,0 +1,218 @@
+\documentclass[twoside,a4paper,12pt]{book}%,AutoFakeBold,twoside,openright,
+% 可用选项有 debug|ebook|hardcopy, amd|pmd|phdplain|phdfancy, nobox, manualSpine, onlyCover, twoSideCover, noBlankPages.
+% debug 生成的PDF带框线，方便调试
+% ebook 带彩色文字的PDF
+% hardcopy 无彩色文字的PDF
+% amd 学硕使用
+% pmd 专硕使用
+% phdplain 博士论文简装
+% phdfancy 博士论文精装
+% nobox 输出的封面无框线和书脊
+% manualSpine 手动输出书脊,需配合\jluManualSpine命令
+% onlyCover 仅输出封面页
+% twoSideCover 输出双页封面
+% noBlankPages 去掉空白页，主要用于上传到图书馆学位论文系统
+% 默认为 hardcopy,amd，且nobox=false，manualSpine=false，onlyCover=false，twoSideCover=false， noBlankPages=false
+% 双面印刷需在documentclass选项中声明twoside
+% 单面印刷需在documentclass选项中声明oneside
+% 选项使用举例如下
+%\usepackage[phdplain,ebook,twoSideCover,onlyCover]{jluthesis2023}%
+% \usepackage[amd,hardcopy,twoSideCover]{jluthesis2023}%
+\usepackage[amd,hardcopy,noBlankPages]{jluthesis2023}%
+% \usepackage[phdplain,hardcopy,noBlankPages]{jluthesis2023}%
+
+% 用于算法注释
+\usepackage{algcompatible}
+\renewcommand{\COMMENT}[2][.5\linewidth]{%
+  \leavevmode\hfill\makebox[#1][l]{//~#2}}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\RETURN{\State \textbf{return} }
+
+% 用于排版代码
+\usepackage{listings}
+
+
+\graphicspath{{figures/}}
+
+% \newcommand{\Title}{吉林大学学位论文模板{\jluthesisVersion}示例}
+\newcommand{\Title}{中文论文题目}
+\newcommand{\Author}{甄继伟} % 作者姓名
+
+\begin{document}
+\frontmatter
+\sloppy % 解决中英文混排的断行问题，会加入间距，但不会影响断行 ????
+
+
+% 手动在长标题中利用 \par 输入断行，
+\jluCTitle{\Title}
+
+% 竖排的书脊输出时，如果遇到中英混杂的标题会比较麻烦，需要中英分开控制输出
+% 但如果仅有中文或英文都比较简单，如
+% \jluCSpineTitle{吉林大学学位论文模版示例} % 仅中文的书脊标题
+% \jluCSpineTitle{\jluPrintSpine{Sample Typesetting for {\jluthesisVersion}}} % 仅英文的书脊标题
+\jluCSpineTitle{\jluPrintSpine{\jluPrintSpineChinese{吉林大学学位论文模版}{\jluthesisVersion}\jluPrintSpineChinese{示例}}} % 中英混杂的书脊标题
+
+\jluSpineHorizontalPosition{1.65} % 书脊的水平位置，修改可使书脊水平平移
+
+% 当在选项中指定手动输出书脊时,可用下列命令手动输出书脊进行微调
+% \jluManualSpine{
+%   % for oneSideCover
+%	\jluPrintVerticallyOneByOne{2.5cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+%	\jluPrintVerticallySentence{2.5cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+%	\jluPrintVerticallyOneByOne{2.5cm}{-30em}{示例}{0.2in}{}
+%	\jluPrintVerticallyOneByOne{2.45cm}{-38em}{ \Author }{0.2in}{\bfseries}
+%	\jluPrintVerticallyOneByOne{2.5cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+%   % for twoSideCover    
+%	\jluPrintVerticallyOneByOne{23cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+%	\jluPrintVerticallySentence{23cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+%	\jluPrintVerticallyOneByOne{23cm}{-30em}{示例}{0.2in}{}
+%	\jluPrintVerticallyOneByOne{23cm}{-38em}{ \Author }{0.2in}{\bfseries}
+%	\jluPrintVerticallyOneByOne{23cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+% } % jluManualSpine
+\jluETitle{Title of English Thesis} % 封面的『英文论文题目』
+\jluCSubject{计算数学}        % 封面的『专业』或『类别』
+\jluCInterest{高性能计算}             % 封面的『研究方向』或『领域（方向）』，博士精装版扉页的『研究方向』
+\jluCSubjectScd{计算机应用技术}     % 扉页的『专业名称』或『领域（方向）』
+\jluCSubjectTrd{计算机应用技术}     % 学位论文授权说明中的『学科专业』
+\jluCDegree{理学硕士}               % 扉页的『学位类别』或『类别』
+\jluCCollege{数学学院}
+\jluCollegeNumber{10183}
+\jluCUniversity{吉林大学}
+\jluCAuthor{\Author} % 若为两个字建议中间留一个汉字的空间，如王\hphantom{空}喆
+\jluCSupervisor{张\hphantom{空}希} % 若为两个字建议中间留一个汉字的空间，如王\hphantom{空}喆
+\jluCSupervisorPost{教授}
+\jluClassification{TP391}
+\jluSecurityLevel{公开}
+\jluCAddress{吉林大学数学学院，130012} 
+\jluTelphone{(+86) 1354454XXXX}  
+\jluStudentNumber{2023312XXX}
+
+\jluAuthorSignatureOne{ % 原创声明作者签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{figures/author.png}	
+	}
+}
+\jluAuthorSignatureTwo{ % 授权声明作者签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{figures/author.png}	
+	}
+}
+\jluSupervisorSignature{ % 授权声明导师签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{figures/author_tutor.png}
+	}
+}
+
+% 以下日期若注释掉，对应的日期将留空
+\jluDateForCover{2025}{4}
+\jluDegreeObtainDate{2025}{6}{21}
+\jluDefenseDate{2025}{5}{31}
+\jluOriginalStatementDate{2025}{6}{1}
+\jluContributionStatementDate{2025}{6}{1}
+
+\jluCommitteeTable{
+	%\vspace{5cm}
+	\setstretch{1.32}
+    \begin{tabular}{l@{\hspace{0.5cm}}l@{\hspace{1.0cm}}l@{\hspace{1.5cm}}r}
+    \multicolumn{4}{l}{答辩委员会组成：}\\
+            &姓名 & 职称 & 工作单位 \\
+        主席&徐宜花& 教授 & XX大学   \\
+        委员&李辉京& 教授 & YYYY大学   \\
+            &刘世美& 教授 & ZZZZZZZZ大学   \\
+            &千允才& 教授 & AA大学   \\
+            &张英牧& 教授 & BB大学   \\
+            &尹\quad 凡& 研究员 & BB大学   \\
+    \end{tabular}
+}
+
+\input{part/abstract.tex}
+
+\hypersetup{
+	pdfcreator={XeLaTeX \& \jluthesisVersion},   % creator of the document
+	pdfproducer={XeLaTeX \& \jluthesisVersion},  % producer of the document
+	pdfinfo={
+          CreationDate={2020 0401 120000},
+          ModDate={2020 0401 120000},
+    },
+}
+\jluMakeCover
+
+
+\titleformat{\chapter}{\centering\sffamily\mdseries\sanhao}{\CJKchaptername}{1em}{}
+\titlespacing{\chapter}{0pt}{8pt}{16pt}
+
+\pagenumbering{Roman} 
+\tableofcontents
+
+\cleardoublepage
+\pdfbookmark{插图目录}{lof}
+\label{lof}
+\listoffigures
+\clearpage
+\pdfbookmark{表格目录}{lot}
+\label{lot}
+\listoftables
+
+\titleformat{\chapter}{\centering\rmfamily\bfseries\sanhao}{\CJKchaptername}{1em}{}
+\titlespacing{\chapter}{0pt}{8pt}{16pt}
+
+\clearpage
+\pagenumbering{arabic}
+
+
+{\xiaosi}
+%{\fontsize \fontsize{12.05pt}{14.45pt}\selectfont}
+% 清除目录后面空页的页眉和页脚
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%% 正文
+\mainmatter
+\xiaosi                        % 正文使用默认字体，小四，宋体
+
+\input{part/introduction.tex} % 绪论
+\input{part/research.tex} % 研究现状
+
+\input{part/algorithm.tex} % 算法
+\input{part/code.tex} % 代码
+% \input{part/experiment.tex} % 实验
+% \input{part/conclusion.tex} % 结论
+% \input{part/futurework.tex} % 未来工作
+
+
+
+
+
+
+
+\jluReferenceFile{references} % 参考文献文件名
+\jluReferenceStyle{gbt7714-numerical} % gbt7714-author-year
+\jluPrintReference
+
+
+
+\begin{jluSelfIntroduction}
+此处放置作者简介
+\end{jluSelfIntroduction}
+
+
+
+\begin{jluAcknowledgment}
+三年时间看似漫长却又一晃而过，回首走过的岁月，我感慨良多。从最初的论文选题、思路梳理到研讨交流、反复修改直至最终完稿，都离不开老师、同学和亲人们的支持和无私帮助，在此我要向他们表达我最诚挚的谢意。
+
+...
+
+求学生涯暂告段落，但求知之路却永无止境。我将倍加珍惜大学生活给予我的珍贵财富，不忘初心，砥砺前行！
+\end{jluAcknowledgment}
+
+\appendix
+\begin{appendices}
+	\chapter{实验所用数据}
+	......
+	\chapter{其他}
+	......
+\end{appendices}
+
+\end{document}
