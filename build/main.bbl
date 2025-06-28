@@ -1,0 +1,62 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax\else
+  \urlstyle{same}\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \DeclareUrlCommand\doi{\urlstyle{rm}}\else
+  \providecommand\doi[1]{\href{https://doi.org/#1}{\nolinkurl{#1}}}\fi
+
+\bibitem[Li et~al.(2020)Li, Tang, Wu, and Liao]{Li_2020}
+LI~K, TANG~K, WU~T, et~al.
+\newblock D3m: A deep domain decomposition method for partial differential
+  equations\allowbreak[J/OL].
+\newblock IEEE Access, 2020, 8:\penalty0 5283–5294.
+\newblock \url{http://dx.doi.org/10.1109/ACCESS.2019.2957200}.
+\newblock DOI: \doi{10.1109/access.2019.2957200}.
+
+\bibitem[Manz et~al.(1990)Manz, Graber, and Widmer]{Manz1990}
+MANZ~A, GRABER~N, WIDMER~H~M.
+\newblock Miniaturized total chemical analysis systems: A novel concept for
+  chemical sensing.\allowbreak[J].
+\newblock Sens. Actuators B, 1990, 1:\penalty0 244-248.
+
+\bibitem[Harrison et~al.(1993)Harrison, Fluri, Seiler, Fan, Effenhauser, and
+  Manz]{Harrison1993}
+HARRISON~D~J, FLURI~K, SEILER~K, et~al.
+\newblock Micromachining a miniaturized capillary electrophoresis-based
+  chemicalanalysis system on a chip\allowbreak[J].
+\newblock Science, 1993, 261:\penalty0 895-897.
+
+\bibitem[Erickson et~al.(2003)Erickson, Li, and Krullb]{Erickson2003}
+ERICKSON~D, LI~D, KRULLB~U~J.
+\newblock Modeling of dna hybridization kinetics for spatially resolved
+  biochips\allowbreak[J].
+\newblock Anal. Biochem., 2003, 317:\penalty0 186-200.
+
+\bibitem[Erd{\H{o}}s et~al.(1960)Erd{\H{o}}s and
+  R{\'e}nyi]{erdHos1960evolution}
+ERD{\H{O}}S~P, R{\'E}NYI~A.
+\newblock On the evolution of random graphs\allowbreak[J].
+\newblock Publ. Math. Inst. Hung. Acad. Sci, 1960, 5\penalty0 (1):\penalty0
+  17-60.
+
+\bibitem[Zafarani et~al.(2009)Zafarani and Liu]{konect:socialcomputing}
+ZAFARANI~R, LIU~H.
+\newblock Social computing data repository at {ASU}\allowbreak[EB/OL].
+\newblock Arizona State University, School of Computing, Informatics and
+  Decision Systems Engineering, 2009.
+\newblock \url{http://socialcomputing.asu.edu}.
+
+\bibitem[kon(2017)]{konect}
+Network datasets -- {KONECT}\allowbreak[EB/OL].
+\newblock 2017.
+\newblock \url{http://konect.uni-koblenz.de/networks/}.
+
+\bibitem[Auroux et~al.(2002)Auroux, Iossifidis, Reyes, and Manz]{Auroux2002}
+AUROUX~P~A, IOSSIFIDIS~D, REYES~D~R, et~al.
+\newblock Micro total analysis systems: 2. analytical standard operations and
+  applications\allowbreak[J].
+\newblock Anal. Chem., 2002, 74:\penalty0 2637-2652.
+
+\end{thebibliography}

@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: gbt7714-numerical.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+Warning--empty author in konect
+You've used 8 entries,
+            4281 wiz_defined-function locations,
+            947 strings with 8018 characters,
+and the built_in function-call counts, 40735 in all, are:
+= -- 973
+> -- 4658
+< -- 5570
++ -- 1529
+- -- 431
+* -- 335
+:= -- 5652
+add.period$ -- 27
+call.type$ -- 8
+change.case$ -- 35
+chr.to.int$ -- 1376
+cite$ -- 10
+duplicate$ -- 147
+empty$ -- 495
+format.name$ -- 122
+if$ -- 10567
+int.to.chr$ -- 1
+int.to.str$ -- 9
+missing$ -- 0
+newline$ -- 53
+num.names$ -- 21
+pop$ -- 1793
+preamble$ -- 1
+purify$ -- 8
+quote$ -- 0
+skip$ -- 4432
+stack$ -- 0
+substring$ -- 2054
+swap$ -- 23
+text.length$ -- 76
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 104
+warning$ -- 1
+while$ -- 101
+width$ -- 0
+write$ -- 123
+(There was 1 warning)
