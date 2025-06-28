@@ -42,6 +42,14 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 latexmk -f main.tex 
 ```
 
+
+
+https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
+
+
+
+
+
 # 说明
 ## 目录结构
 ```bash
