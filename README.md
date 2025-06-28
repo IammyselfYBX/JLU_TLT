@@ -66,16 +66,16 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 ```bash
 .
 |-- figuers 				# 存放图片
-|-- fonts 					# [第三方]存放字体
-|-- etc						# 暂时未归类的文件
+|-- fonts 				# [第三方]存放字体
+|-- etc					# 暂时未归类的文件
 |-- scripts 				# 常用脚本
-|-- jluthesis2023.sty		# 2023版的模板文件
+|-- jluthesis2023.sty			# 2023版的模板文件
 |-- main.tex 				# 主文件(根据自己情况修改)
-|-- part 					# 各部分文件(根据自己情况修改)
+|-- part 				# 各部分文件(根据自己情况修改)
 |-- references.bib 			# 参考文献(根据自己情况修改)
 |-- gbt7714.sty				# 参考文献样式
-|-- gbt7714-author-year.bst # 参考文献作者年的样式
-|-- gbt7714-numerical.bst 	# 参考文献数字的样式
+|-- gbt7714-author-year.bst 		# 参考文献作者年的样式
+|-- gbt7714-numerical.bst 		# 参考文献数字的样式
 `-- README.md 				# 说明文档
 ```
 ## 最终结果
