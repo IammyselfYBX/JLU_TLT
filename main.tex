@@ -16,10 +16,10 @@
 % 双面印刷需在documentclass选项中声明twoside
 % 单面印刷需在documentclass选项中声明oneside
 % 选项使用举例如下
-%\usepackage[phdplain,ebook,twoSideCover,onlyCover]{jluthesis2023}%
-% \usepackage[amd,hardcopy,twoSideCover]{jluthesis2023}%
-\usepackage[amd,hardcopy,noBlankPages]{jluthesis2023}%
-% \usepackage[phdplain,hardcopy,noBlankPages]{jluthesis2023}%
+%\usepackage[phdplain,ebook,twoSideCover,onlyCover]{style/jluthesis2023}%
+% \usepackage[amd,hardcopy,twoSideCover]{style/jluthesis2023}%
+\usepackage[amd,hardcopy,noBlankPages]{style/jluthesis2023}%
+% \usepackage[phdplain,hardcopy,noBlankPages]{style/jluthesis2023}%
 
 % 用于算法注释
 \usepackage{algcompatible}
@@ -30,6 +30,9 @@
 
 % 用于排版代码
 \usepackage{listings}
+
+% 用于自定义列表标签
+\usepackage{enumitem}
 
 
 \graphicspath{{figures/}}
@@ -188,7 +191,7 @@
 
 
 \jluReferenceFile{references} % 参考文献文件名
-\jluReferenceStyle{gbt7714-numerical} % gbt7714-author-year
+\jluReferenceStyle{style/gbt7714-numerical} % style/gbt7714-author-year
 \jluPrintReference
 
 
@@ -216,3 +219,5 @@
 \end{appendices}
 
 \end{document}
+
+
