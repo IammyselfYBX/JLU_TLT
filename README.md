@@ -47,12 +47,12 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 ```
 
 ### Windows方式
-- [方法一] 将 ```fonts``` 目录下的字体复制到 ```C:\Windows\Fonts```
+- [方法一] 将 `fonts` 目录下的字体复制到 `C:\Windows\Fonts`
 
-- [方法二] 在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 PATH 环境变量。<br/> 
+- [方法二] 在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 `PATH` 环境变量。<br/> 
 
 ### 字体说明
-- 思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。使用假粗体需在 documentclass 中设置 AutoFakeBold， 在 jluthesis2023 中设置 manualSpine，并需重置 CJKmainfont，具体见 [amd-ebook-oneside-假粗体.tex](example_files/amd-ebook-oneside-假粗体.tex)。本人所提交的论文采用假粗体方案。
+- 思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。使用假粗体需在 documentclass 中设置 AutoFakeBold， 在 jluthesis2023 中设置 manualSpine，并需重置 CJKmainfont
 
 
 ## 3.修改内容
