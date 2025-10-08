@@ -249,6 +249,8 @@ chmod a+x makeCrosscheckVersion.sh
 ### `makeUnselectable.sh` 转成图片型PDF 
 使用Ghostscript将PDF转换为PostScript格式，再将PostScript转换回PDF，在转换过程中文字被"光栅化"，变成图像
 
+[makeExampleFiles.sh转成图片型PDF](https://www.bilibili.com/video/BV1ttxizcEu1/)<br>
+
 # 相关项目
 [吉林大学答辩Beamer模板](https://github.com/IammyselfYBX/JLUbeamer)
 
