@@ -3,7 +3,8 @@
 > 此模板为个人根据学校要求实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
 
 # 学位论文撰写规范
-[吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)
+[吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
+[[备份]吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib-old.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
 
 
 # 使用
