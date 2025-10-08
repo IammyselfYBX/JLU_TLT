@@ -55,17 +55,8 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 - 思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。使用假粗体需在 documentclass 中设置 AutoFakeBold， 在 jluthesis2023 中设置 manualSpine，并需重置 CJKmainfont，具体见 [amd-ebook-oneside-假粗体.tex](example_files/amd-ebook-oneside-假粗体.tex)。本人所提交的论文采用假粗体方案。
 
 
-## 3.编译
-### \[推荐\] 使用latexmk
-```bash
-latexmk -f main.tex 
-```
-
-https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
-
-
-# 说明
-## 目录结构
+## 3.修改内容
+### 目录结构
 ```bash
 .
 |-- fonts 				# [第三方]存放字体
@@ -77,24 +68,61 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 |    |-- gbt7714-author-year.bst 	# 参考文献作者年的样式
 |    `-- gbt7714-numerical.bst 		# 参考文献数字的样式
 |-- figuers 			# [自行修改] 存放图片
+|    |-- author.png         # [自行修改] 作者签名
+|    `-- author_tutor.png   # [自行修改] 导师签名
 |-- jluthesis.cfg 		# [自行修改] 配置文件
 |-- main.tex 			# [自行修改] 主文件
 |-- part 				# [自行修改] 各部分文件
 |-- references.bib 		# [自行修改] 参考文献
 `-- README.md 			# 说明文档
 ```
-## 最终结果
-文档主题在 [part](part) 下各文件。
-<details>
-<summary>
-图例
-</summary>
-<img src="figures/module/cover.png" width="80%"/>
-</details>
 
-使用示例见 [example.tex](example.tex)。
+### 修改配置文件
+`jluthesis.cfg`文件包含了论文作者、专业、日期等信息，请根据实际情况修改。
 
-## style 样式修改
+### 签名
+在 `figuers` 目录下放置作者和导师的签名图片，命名为 `author.png` 和 `author_tutor.png`
+
+注意：文件格式必须是 png 。
+
+### 修改正文
+正文内容在 `part` 目录下的各个 tex 文件中，按需新建。
+```bash
+$> cd part 
+$> touch chapter1绪论.tex chapter2相关理论与关键技术.tex
+```
+
+然后在 `main.tex` 中按需引入 `part` 目录下的各个 tex 文件,具体格式如下
+
+```latex
+\input{part/chapter1绪论.tex} 				% 第1章 绪论
+\input{part/chapter2相关理论与关键技术.tex}	 % 第2章 相关理论与关键技术
+```
+
+
+## 4.编译
+### \[推荐\] 使用latexmk
+```bash
+latexmk -f main.tex 
+```
+
+https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
+
+> 最终结果
+> 文档主题在 [part](part) 下各文件。
+> <details>
+> <summary>
+> 图例
+> </summary>
+> <img src="figures/module/cover.png" width="80%"/>
+> </details>
+> 
+
+
+# 高级操作
+默认的配置就是 **学术学位硕士印刷版**，若需其他配置可参考以下说明
+
+## 1.style 样式修改
 ### 文档可用选项
 在`main.tex`中可以设置文档选项，分为一下4大类
 
@@ -208,14 +236,14 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 #### 视频演示
 [参考文献样式设置](https://www.bilibili.com/video/BV1hqxYz4EgS/)<br>
 
-## 设置论文级别
+## 2.设置论文级别
 在`style/jluthesis2023.sty`中通过修改 `\@jlu@mdtrue` 或 `\@jlu@phdtrue` 来设置论文级别
 ```latex
 \@jlu@mdtrue\@jlu@phdfalse  % 默认设置为硕士 
 % \@jlu@phdtrue\@jlu@mdfalse  % 默认设置为博士
 ```
 
-## script 脚本使用
+## 3.script 脚本使用
 ### `makeCrosscheckVersion.sh` 论文查重版本生成脚本 
 查重时可能会把原创声明、授权声明、参考文献、致谢等包括进去，可使用 `makeCrosscheckVersion.sh` 制作查重版本，生成的 PDF 文档中原创声明、授权声明、作者简介、致谢四部分的文字被转换为路径，因此这四部分无法导出无法复制，也就不会参与查重。之所以没将参考文献也做成不可复制的，是觉得查重系统会从这里面提取引用。
 
