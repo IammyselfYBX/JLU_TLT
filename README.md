@@ -176,6 +176,10 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \usepackage[amd,hardcopy]{jluthesis2023}
 ```
 
+#### 视频演示
+[twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
+[noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
+
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
 - 单面印刷需设置 `documentclass` 为 `oneside` (如`\documentclass[twoside,a4paper,12pt]{book}`)
@@ -198,6 +202,9 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \RequirePackage[sort&compress]{gbt7714}
 \citestyle{authoryear}
 ```
+
+#### 视频演示
+[参考文献样式设置](https://www.bilibili.com/video/BV1hqxYz4EgS/)<br>
 
 ## script 脚本使用
 ### `makeCrosscheckVersion.sh` 论文查重版本生成脚本 
