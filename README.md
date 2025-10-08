@@ -5,6 +5,7 @@
 # 学位论文撰写规范
 [吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)
 
+
 # 使用
 ## 0.准备工作
 - 建议安装 TeX Live 并使用 XeLaTeX 编译。<br/>
@@ -65,18 +66,20 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 ## 目录结构
 ```bash
 .
-|-- figuers 				# 存放图片
 |-- fonts 				# [第三方]存放字体
-|-- etc					# 暂时未归类的文件
-|-- scripts 				# 常用脚本
-|-- jluthesis2023.sty			# 2023版的模板文件
-|-- main.tex 				# 主文件(根据自己情况修改)
-|-- part 				# 各部分文件(根据自己情况修改)
-|-- references.bib 			# 参考文献(根据自己情况修改)
-|-- gbt7714.sty				# 参考文献样式
-|-- gbt7714-author-year.bst 		# 参考文献作者年的样式
-|-- gbt7714-numerical.bst 		# 参考文献数字的样式
-`-- README.md 				# 说明文档
+|-- etc					# [不要修改] 暂时未归类的文件
+|-- scripts 			# [不要修改] 常用脚本
+|-- style               # [谨慎修改] 样式文件
+|    |--jluthesis2023.sty 	# 2023版的模板文件
+|    |-- gbt7714.sty		# 中国国家标准GB/T 7714的参考文献格式
+|    |-- gbt7714-author-year.bst 	# 参考文献作者年的样式
+|    `-- gbt7714-numerical.bst 		# 参考文献数字的样式
+|-- figuers 			# [自行修改] 存放图片
+|-- jluthesis.cfg 		# [自行修改] 配置文件
+|-- main.tex 			# [自行修改] 主文件
+|-- part 				# [自行修改] 各部分文件
+|-- references.bib 		# [自行修改] 参考文献
+`-- README.md 			# 说明文档
 ```
 ## 最终结果
 文档主题在 [part](part) 下各文件。
@@ -89,8 +92,47 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 
 使用示例见 [example.tex](example.tex)。
 
-## 选项
-可用选项有 `debug|ebook|hardcopy`，`amd|pmd|phdplain|phdfancy`，`nobox`， `manualSpine`， `onlyCover`， `twoSideCover`,  `noBlankPages`。
+## style 样式修改
+### 文档可用选项
+在`main.tex`中可以设置文档选项，分为一下4大类
+
+- **输出类型选项（互斥，只能选一个）**
+  - `debug` - 调试模式，生成带框线的PDF，方便调试布局
+  - `ebook` - 电子版模式，带彩色文字的PDF（链接等为彩色）
+  - `hardcopy` - 印刷版模式，无彩色文字的PDF（黑白打印友好）
+
+- **学位类型选项（互斥，只能选一个）**
+  - `amd` - 学术学位硕士（Academic Master's Degree）
+  - `pmd` - 专业学位硕士（Professional Master's Degree）
+  - `phdplain` - 博士论文简装版
+  - `phdfancy` - 博士论文精装版
+
+- **封面显示选项（可组合使用）**
+  - `onlyCover` - 仅输出封面页
+  - `twoSideCover` - 输出双页封面（用于制作封皮）
+  - `nobox` - 输出的封面无框线和书脊
+  - `manualSpine` - 手动输出书脊，需配合`\jluManualSpine`命令
+```latex
+% 当在选项中指定手动输出书脊时,可用下列命令手动输出书脊进行微调
+\jluManualSpine{
+% for oneSideCover
+\jluPrintVerticallyOneByOne{2.5cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+\jluPrintVerticallySentence{2.5cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+\jluPrintVerticallyOneByOne{2.5cm}{-30em}{示例}{0.2in}{}
+\jluPrintVerticallyOneByOne{2.45cm}{-38em}{ \coverauthor }{0.2in}{\bfseries}
+\jluPrintVerticallyOneByOne{2.5cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+% for twoSideCover    
+\jluPrintVerticallyOneByOne{23cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+\jluPrintVerticallySentence{23cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+\jluPrintVerticallyOneByOne{23cm}{-30em}{示例}{0.2in}{}
+\jluPrintVerticallyOneByOne{23cm}{-38em}{ \coverauthor }{0.2in}{\bfseries}
+\jluPrintVerticallyOneByOne{23cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+} 
+```
+  
+
+- **页面处理选项**
+  - `noBlankPages` - 去掉空白页，主要用于上传到图书馆学位论文系统
 
 |选项|作用|
 |:---:|---|
@@ -106,39 +148,106 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 |onlyCover | 仅输出封面页|
 |twoSideCover | 输出双页封面|
 |noBlankPages  | 去掉空白页，主要用于上传到图书馆学位论文系统|
-	
+
+#### 设置文档选项	
 默认为 `hardcopy,amd`，且 `nobox=false, manualSpine=false, onlyCover=false, twoSideCover=false, noBlankPages=false`
 
 举例如下
 ```
+% 学术硕士电子版，带双面封面
+\usepackage[amd,ebook,twoSideCover]{style/jluthesis2023}
+
+% 专业硕士印刷版，无空白页（用于提交）
+\usepackage[amd,hardcopy,noBlankPages]{style/jluthesis2023}
+
+% 博士论文精装版，仅封面
+\usepackage[phdfancy,hardcopy,onlyCover]{style/jluthesis2023}
+
+% 调试模式，无框线
+\usepackage[debug,amd,nobox]{style/jluthesis2023}
+
+% 博士论文简装版，带彩色文字的PDF，输出双页封面，仅输出封面页
 \usepackage[phdplain,ebook,twoSideCover,onlyCover]{jluthesis2023}
+
+% 学术学位硕士，无彩色文字的PDF，输出双页封面
 \usepackage[amd,hardcopy,twoSideCover]{jluthesis2023}
+
+% 学术学位硕士，无彩色文字的PDF
 \usepackage[amd,hardcopy]{jluthesis2023}
 ```
 
-- 单面印刷需设置 documentclass 为 oneside (如`\documentclass[twoside,a4paper,12pt]{book}`)，双面印刷需设置 documentclass 为 twoside (如`\documentclass[oneside,a4paper,12pt]{book}`)。
+#### 打印设置
+在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
+- 单面印刷需设置 `documentclass` 为 `oneside` (如`\documentclass[twoside,a4paper,12pt]{book}`)
+- 双面印刷需设置 `documentclass` 为 `twoside` (如`\documentclass[oneside,a4paper,12pt]{book}`)。
 
-- 要生成 MS Word 文档，可使用 pandoc 或 Adobe Acrobat DC，也可直接用 MS Word 打开 PDF 得到 Word 文档，只是这三种方式得到的 Word 文档质量不同。
+### 参考文献的样式
+本模板一共提供两种参考文献样式，`数字格式`和`作者-年份格式`
+```latex
+% 1.数字引用模式（[1], [2], [3]）
+% 方法一：在包加载时指定
+\RequirePackage[sort&compress,numbers]{gbt7714}
+% 方法二：加载包后设置
+\RequirePackage[sort&compress]{gbt7714}
+\citestyle{numbers}
 
-- 查重时可能会把原创声明、授权声明、参考文献、致谢等包括进去，可使用 `makeCrosscheckVersion.sh` 制作查重版本，生成的 PDF 文档中原创声明、授权声明、作者简介、致谢四部分的文字被转换为路径，因此这四部分无法导出无法复制，也就不会参与查重。之所以没将参考文献也做成不可复制的，是觉得查重系统会从这里面提取引用。<br/>
-	- 使用方法：
-	```bash
-	chmod a+x makeCrosscheckVersion.sh
-	./makeCrosscheckVersion.sh example  # example为PDF文件名，不包括扩展名
-	```
-	- 执行此脚本需
-	    - 安装 [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[Ghostscript](https://www.ghostscript.com/download/gsdnld.html) 并将其路径加入 PATH 环境变量。
-	    - 将 TeX Live 可执行文件路径加入 PATH 环境变量。
-	    - 有类 Linux 环境，可执行 cat、grep、awk、head 等命令。Windows下安装 [Git](https://git-scm.com/downloads) 并使用 Git Bash 可得到。
+% 2.作者-年份模式（张三(2001), 李四等(2003)）
+% 方法一：在包加载时指定
+\RequirePackage[sort&compress,authoryear]{gbt7714}
+% 方法二：加载包后设置
+\RequirePackage[sort&compress]{gbt7714}
+\citestyle{authoryear}
+```
 
+## script 脚本使用
+### `makeCrosscheckVersion.sh` 论文查重版本生成脚本 
+查重时可能会把原创声明、授权声明、参考文献、致谢等包括进去，可使用 `makeCrosscheckVersion.sh` 制作查重版本，生成的 PDF 文档中原创声明、授权声明、作者简介、致谢四部分的文字被转换为路径，因此这四部分无法导出无法复制，也就不会参与查重。之所以没将参考文献也做成不可复制的，是觉得查重系统会从这里面提取引用。
 
+该脚本生成用于学术不端检测的特殊版本PDF，先将完整论文分成5个部分
+- A部分：封面到扉页
+- B部分：原创声明到授权声明
+- C部分：摘要到参考文献
+- D部分：作者简介到致谢
+- E部分：附录
+
+然后对B和D部分进行特殊处理，使文字无法被复制，将处理后的部分重新合并为新PDF
+
+#### 依赖
+- 安装 [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)、[Ghostscript](https://www.ghostscript.com/download/gsdnld.html) 并将其路径加入 PATH 环境变量。
+- 将 TeX Live 可执行文件路径加入 PATH 环境变量。
+- 有类 Linux 环境，可执行 cat、grep、awk、head 等命令。Windows下安装 [Git](https://git-scm.com/downloads) 并使用 Git Bash 可得到。
+
+#### 使用方法
+```bash
+chmod a+x makeCrosscheckVersion.sh
+./makeCrosscheckVersion.sh example  # example为PDF文件名，不包括扩展名
+```
+
+### `makeExampleFiles.sh` 自动生成各种配置组合的示例PDF文档 
+硕士学位：
+- amd-ebook-oneside.pdf - 学硕电子版单面
+- amd-ebook-oneside-假粗体.pdf - 学硕电子版假粗体效果
+- pmd-hardcopy-onlyCover.pdf - 专硕印刷版仅封面
+- pmd-hardcopy-twoside.pdf - 专硕印刷版双面
+- pmd-hardcopy-twoside-noBlankPages.pdf - 专硕印刷版无空白页
+
+博士学位：
+- phdfancy-ebook-twoSideCover.pdf - 博士精装版双面封面
+- phdplain-hardcopy.pdf - 博士简装版印刷
+- phdplain-hardcopy-twoSideCover-onlyCover.pdf - 博士简装双面封面
+
+特殊版本：
+- amd-hardcopy-CrosscheckVersion.pdf - 查重版本
+
+### `makeUnselectable.sh` 转成图片型PDF 
+使用Ghostscript将PDF转换为PostScript格式，再将PostScript转换回PDF，在转换过程中文字被"光栅化"，变成图像
 
 # 相关项目
 [吉林大学答辩Beamer模板](https://github.com/IammyselfYBX/JLUbeamer)
-
 
 # 参考
 - [吉林大学硕博学位论文 LaTeX 模板——jluthesis2023](https://github.com/maxuewei2/jluthesis2023)
 - 本科毕业论文：[x86vk/JLU-CCST-Thesis](https://github.com/x86vk/JLU-CCST-Thesis)
 - 硕士毕业论文：[jiafeng5513/JLU_Dissertation](https://github.com/jiafeng5513/JLU_Dissertation)
+- [gbt7714](https://github.com/zepinglee/gbt7714-bibtex-style)
 

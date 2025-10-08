@@ -1,42 +1,41 @@
-% Template Package for Writing Thesis for Jilin University by Ma Xuewei.
-% GitHub: https://github.com/maxuewei2/JLUThesisLaTeX
+% Template Package for Writing Thesis for Jilin University by JiWei Zhen.
 % 吉林大学硕博论文 TeX 模板
-%
-% 此模板写于 2020 年 3 月 31 日，主要参考 jluthesis 
-% 及自己在写毕业论文时用 LaTeX 实现的 2020 年吉林大学研究生学位论文撰写及装帧规范。
-% 因个人 TeX 能力有限且我自己的实现看起来很乱，所以参考 jluthesis 进行模板化修改产生此模板。
-% 感谢实现 jluthesis 并开源的前辈 Zhang Yinhe。
-% jluthesis 原档存储于 google code，但已无法下载。
-% 此模板参考的 jluthesis 下载于 https://github.com/dartall/jluthesis
-%
-% 使用 XeTeX 系统处理源文件，方便直接使用系统的 truetype 或 opentype 字体
-% 参考了 XJTUthesis.cls, HIT-pluto-PhD, 
-%
+% 
+% 1. 版权声明
+%   此模板写于 2024 年 10 月 08 日，
+%   主要参考 jluthesis 及 2024-06-13 版吉林大学研究生学位论文撰写及装帧规范 http://lib-old.jlu.edu.cn/portal/service/lwtjxt/2666.aspx。
+% 2.编译说明
+%   使用 XeTeX 系统处理源文件，方便直接使用系统的 truetype 或 opentype 字体
+%   参考了 XJTUthesis.cls, HIT-pluto-PhD, 
+% 3.可用选项
 % 可用选项有 debug|ebook|hardcopy, amd|pmd|phdplain|phdfancy, nobox, manualSpine, onlyCover, twoSideCover, noBlankPages.
-% debug 生成的PDF带框线，方便调试
-% ebook 带彩色文字的PDF
-% hardcopy 无彩色文字的PDF
-% amd 学硕使用
-% pmd 专硕使用
-% phdplain 博士论文简装
-% phdfancy 博士论文精装
-% nobox 输出的封面无框线和书脊
-% manualSpine 手动输出书脊,需配合\jluManualSpine命令
-% onlyCover 仅输出封面页
-% twoSideCover 输出双页封面
-% noBlankPages 去掉空白页，主要用于上传到图书馆学位论文系统
-% 默认为 hardcopy,amd，且nobox=false，manualSpine=false，onlyCover=false，twoSideCover=false, noBlankPages=false
-% 双面印刷需在documentclass选项中声明twoside
-% 单面印刷需在documentclass选项中声明oneside
-% 选项使用举例如下
-% \usepackage[ebook,nobox,amd]{jluthesis2023}%
-% \usepackage[hardcopy,phdplain,twoSideCover,onlyCover]{jluthesis2023}%
+%   debug 生成的PDF带框线，方便调试
+%   ebook 带彩色文字的PDF
+%   hardcopy 无彩色文字的PDF
+%   amd 学硕使用
+%   pmd 专硕使用
+%   phdplain 博士论文简装
+%   phdfancy 博士论文精装
+%   nobox 输出的封面无框线和书脊
+%   manualSpine 手动输出书脊,需配合\jluManualSpine命令
+%   onlyCover 仅输出封面页
+%   twoSideCover 输出双页封面
+%   noBlankPages 去掉空白页，主要用于上传到图书馆学位论文系统
+%   默认为 hardcopy,amd，且nobox=false，manualSpine=false，onlyCover=false，twoSideCover=false, noBlankPages=false
+%   双面印刷需在documentclass选项中声明twoside
+%   单面印刷需在documentclass选项中声明oneside
+%   选项使用举例如下
+%   \usepackage[ebook,nobox,amd]{jluthesis2023}%
+%   \usepackage[hardcopy,phdplain,twoSideCover,onlyCover]{jluthesis2023}%
 %
 % N.B.
 % @: 所有的居中行都需要使用\noindent来消除首行缩进，
 %    并且要在变换字号的命令如 \sihao 之后使用，因为\parindent被修改了
 % @: {\centering }需要使用\\来断行居中
 % @: 
+% 
+% 4.参考文献
+
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{jluthesis2023}[2020/04/03 v0.3 thesis template for jlu]
@@ -76,10 +75,6 @@
 \newif\if@jlu@noBlankPages
 \@jlu@noBlankPagesfalse
 \DeclareOption{noBlankPages}{\@jlu@noBlankPagestrue}
-
-
-
-
 
 \newif\if@jlu@manualPrintSpine
 \@jlu@manualPrintSpinefalse
@@ -601,8 +596,15 @@
 \DeclareCaptionLabelSeparator{oneChineseCharacter}{\hphantom{空}}
 \captionsetup{labelsep=oneChineseCharacter}
 
+% 用于排版代码
+\usepackage{listings}
 \RequirePackage{algorithm}
-
+% 用于算法注释
+\usepackage{algcompatible}
+\renewcommand{\COMMENT}[2][.5\linewidth]{%
+  \leavevmode\hfill\makebox[#1][l]{//~#2}}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\RETURN{\State \textbf{return} }
 
 \newcommand{\jluRightMark}{{\@jlu@cUniversity}{\@jlu@degreeName}学位论文}
 % 设定页眉页脚
@@ -642,8 +644,26 @@
 
 \RequirePackage{xspace}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 设置参考文献引用
-\RequirePackage[sort&compress]{gbt7714}
+% ------------------------------------
+% 1.数字引用模式（[1], [2], [3]）
+% 方法一：在包加载时指定
+%   \RequirePackage[sort&compress,numbers]{gbt7714}
+% 方法二：加载包后设置
+%   \RequirePackage[sort&compress]{gbt7714}
+%   \citestyle{numbers}
+%
+% 2.作者-年份模式（张三(2001), 李四等(2003)）
+% 方法一：在包加载时指定
+%   \RequirePackage[sort&compress,authoryear]{gbt7714}
+% 方法二：加载包后设置
+%   \RequirePackage[sort&compress]{gbt7714}
+%   \citestyle{authoryear}
+% ------------------------------------
+\RequirePackage[sort&compress,numbers]{gbt7714}
+\citestyle{numbers} % 设置引用样式为数字格式
+% \citestyle{authoryear} % 设置引用样式为作者-年份格式
 %\RequirePackage{natbib}  
 
 \RequirePackage{hypernat}  % must be loaded after natbib and hyperref
@@ -657,6 +677,8 @@
 %\RequirePackage{textcomp}
 %\RequirePackage{xcolor}
 \RequirePackage{fancybox}    % produce box-contained texts
+% 用于自定义列表标签
+\usepackage{enumitem}
 %\RequirePackage[inline]{enumitem}
 %\RequirePackage{url}
 %\RequirePackage{afterpage}
