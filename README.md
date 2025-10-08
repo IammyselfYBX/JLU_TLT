@@ -29,12 +29,13 @@ $> git clone https://github.com/IammyselfYBX/JLU_TLT.git
 ```
 
 ## 2.安装字体
-- 若缺少字体需自行安装 (见[fonts.txt](fonts/fonts.txt))。所需字体如下：
-	- Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
-	- Nimbus Roman，Nimbus Sans，Nimbus Mono
-	- Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
-	- LiSu (隶书)
+所需字体如下：
+  - Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
+  - Nimbus Roman，Nimbus Sans，Nimbus Mono
+  - Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
+  - LiSu (隶书)
 
+若缺少字体需自行安装 (见[fonts.txt](fonts/fonts.txt))。
 > 这里是使用 https://github.com/Haixing-Hu/latex-chinese-fonts# 的字体
 
 ### *nix/Windows WSL 方式
