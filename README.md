@@ -3,8 +3,7 @@
 > 此模板为个人根据学校要求实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
 
 # 学位论文撰写规范
-[吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
-[[备份]吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib-old.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
+[吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)
 
 
 # 使用
@@ -29,13 +28,12 @@ $> git clone https://github.com/IammyselfYBX/JLU_TLT.git
 ```
 
 ## 2.安装字体
-所需字体如下：
-  - Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
-  - Nimbus Roman，Nimbus Sans，Nimbus Mono
-  - Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
-  - LiSu (隶书)
+- 若缺少字体需自行安装 (见[fonts.txt](fonts/fonts.txt))。所需字体如下：
+	- Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
+	- Nimbus Roman，Nimbus Sans，Nimbus Mono
+	- Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
+	- LiSu (隶书)
 
-若缺少字体需自行安装 (见[fonts.txt](fonts/fonts.txt))。
 > 这里是使用 https://github.com/Haixing-Hu/latex-chinese-fonts# 的字体
 
 ### *nix/Windows WSL 方式
@@ -178,10 +176,6 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \usepackage[amd,hardcopy]{jluthesis2023}
 ```
 
-#### 视频演示
-[twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
-[noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
-
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
 - 单面印刷需设置 `documentclass` 为 `oneside` (如`\documentclass[twoside,a4paper,12pt]{book}`)
@@ -205,8 +199,13 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \citestyle{authoryear}
 ```
 
-#### 视频演示
-[参考文献样式设置](https://www.bilibili.com/video/BV1hqxYz4EgS/)<br>
+## 设置论文级别
+在`style/jluthesis2023.sty`中通过修改 `\@jlu@mdtrue` 或 `\@jlu@phdtrue` 来设置论文级别
+```latex
+\@jlu@mdtrue\@jlu@phdfalse  % 默认设置为硕士 
+% \@jlu@phdtrue\@jlu@mdfalse  % 默认设置为博士
+```
+
 
 ## script 脚本使用
 ### `makeCrosscheckVersion.sh` 论文查重版本生成脚本 
@@ -251,8 +250,6 @@ chmod a+x makeCrosscheckVersion.sh
 ### `makeUnselectable.sh` 转成图片型PDF 
 使用Ghostscript将PDF转换为PostScript格式，再将PostScript转换回PDF，在转换过程中文字被"光栅化"，变成图像
 
-[makeExampleFiles.sh转成图片型PDF](https://www.bilibili.com/video/BV1ttxizcEu1/)<br>
-
 # 相关项目
 [吉林大学答辩Beamer模板](https://github.com/IammyselfYBX/JLUbeamer)
 
@@ -261,4 +258,6 @@ chmod a+x makeCrosscheckVersion.sh
 - 本科毕业论文：[x86vk/JLU-CCST-Thesis](https://github.com/x86vk/JLU-CCST-Thesis)
 - 硕士毕业论文：[jiafeng5513/JLU_Dissertation](https://github.com/jiafeng5513/JLU_Dissertation)
 - [gbt7714](https://github.com/zepinglee/gbt7714-bibtex-style)
+
+
 
