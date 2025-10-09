@@ -5,7 +5,6 @@ Template Package for Writing Thesis for Jilin University by JiWei Zhen.
 > 此模板为个人根据学校要求实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
 
 
-
 # 学位论文撰写规范
 [吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
 [[备份]吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib-old.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
@@ -235,6 +234,7 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 > 视频教程<br>
 > [twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
 > [noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
+> [nobox封面无框线和书脊](https://www.bilibili.com/video/BV1CsxrzqEWB/)<br>
 
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
@@ -268,6 +268,10 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \@jlu@mdtrue\@jlu@phdfalse  % 默认设置为硕士 
 % \@jlu@phdtrue\@jlu@mdfalse  % 默认设置为博士
 ```
+
+> 视频教程<br>
+> [设置论文级别(硕士/博士)](https://www.bilibili.com/video/BV1PsxrzBELz/)<br>
+
 
 ## 3.字体修改
 ### 设置字体
