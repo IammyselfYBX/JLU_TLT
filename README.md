@@ -44,9 +44,29 @@ $> git clone https://github.com/IammyselfYBX/JLU_TLT.git
 ### *nix/Windows WSL 方式
 ```bash
 $> sudo mkdir -p /usr/share/fonts/latex_cnfonts
-$> sudo cp ./fonts/*/*/*/* /usr/share/fonts/latex_cnfonts
+# 复制中文字体（多种格式）
+$> sudo cp ./fonts/chinese/*/*.ttf /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+$> sudo cp ./fonts/chinese/*/*.otf /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true  
+$> sudo cp ./fonts/chinese/*/*.TTF /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+$> sudo cp ./fonts/chinese/*/*.OTF /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+# 复制英文字体（多种格式）
+$> sudo cp ./fonts/english/*/*.ttf /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+$> sudo cp ./fonts/english/*/*.otf /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+$> sudo cp ./fonts/english/*/*.TTF /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
+$> sudo cp ./fonts/english/*/*.OTF /usr/share/fonts/latex_cnfonts/ 2>/dev/null || true
 $> cd /usr/share/fonts/latex_cnfonts
-$> mkfontscale && mkfontdir && fc-cache -fv
+
+# 更新字体缓存
+$> sudo mkfontscale && sudo mkfontdir && sudo fc-cache -fv
+```
+
+#### 卸载字体
+如需卸载已安装的字体：
+```bash
+# 删除字体目录
+$> sudo rm -rf /usr/share/fonts/latex_cnfonts
+# 更新字体缓存
+$> sudo fc-cache -fv
 ```
 
 > 视频教程<br>
@@ -65,7 +85,7 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 ```bash
 .
 |-- fonts 				# [第三方]存放字体
-|-- etc					# [不要修改] 未归类的文件
+|-- etc					# [不要修改] 暂时未归类的文件
 |-- scripts 			# [不要修改] 常用脚本
 |-- style               # [谨慎修改] 样式文件
 |    |--jluthesis2023.sty 	# 2023版的模板文件
@@ -224,7 +244,7 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 % 博士论文简装版，带彩色文字的PDF，输出双页封面，仅输出封面页
 \usepackage[phdplain,ebook,twoSideCover,onlyCover]{jluthesis2023}
 
-% 学术学位硕士，无彩色文字的PDF，输出双页封面
+% 学术学位硕士，无彩色文字的PDF，输出双面封面
 \usepackage[amd,hardcopy,twoSideCover]{jluthesis2023}
 
 % 学术学位硕士，无彩色文字的PDF
@@ -235,8 +255,6 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 > [twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
 > [noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
 > [nobox封面无框线和书脊](https://www.bilibili.com/video/BV1CsxrzqEWB/)<br>
-
-更多效果可见[示例](etc/example_files/)目录下的示例文件。
 
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
