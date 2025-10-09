@@ -33,7 +33,7 @@ $> git clone https://github.com/IammyselfYBX/JLU_TLT.git
 ```
 
 ## 2.安装字体
-所需字体如下：
+具体见 [字体说明](fonts/README.md),所需字体如下：
   - Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
   - Nimbus Roman，Nimbus Sans，Nimbus Mono
   - Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
@@ -50,84 +50,18 @@ $> cd /usr/share/fonts/latex_cnfonts
 $> mkfontscale && mkfontdir && fc-cache -fv
 ```
 
+> 视频教程<br>
+> [macOS安装字体](https://www.bilibili.com/video/BV1Px4y1k7eA/)<br>
+> [Arch Linux安装字体](https://www.bilibili.com/video/BV1ea4y1N7TG/)<br>
+> [Linux 字体操作](https://www.bilibili.com/video/BV1N34y167vb/)<br>
+> [[Linux] Latex使用Times New Roman](https://www.bilibili.com/video/BV1i44y1r7HW)<br>
+
 ### Windows方式
 - [方法一] 将 `fonts` 目录下的字体复制到 `C:\Windows\Fonts`
 
 - [方法二] 在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 `PATH` 环境变量。<br/> 
 
-### 字体说明
-具体字体说明见 [字体说明](fonts/README.md)
-
-#### (不建议修改) 字体设置
-在 `style/jluthesis2023.sty` 中设置中文字体是开源还是闭源的
-```latex
-% 闭源字体
-\setCJKmainfont{SimSun}                     % 主字体：宋体
-\setCJKsansfont{SimHei}                     % 无衬线：黑体
-\setCJKmonofont{KaiTi}                      % 等宽字体：楷体
-
-% 开源字体
-\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}    % 主字体：Adobe 宋体，当需要粗体时，使用 思源宋粗体
-\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 无衬线：思源黑体，当需要粗体时，使用 思源黑粗体
-\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体等宽字体：Adobe 楷体
-```
-
-在 `style/jluthesis2023.sty` 中设置英文字体是开源还是闭源的
-```latex
-% 闭源字体
-\setmainfont{Times New Roman}       % 英文主要字体是Times New Roman
-\setsansfont{Arial}                 % 英文无衬线字体: Arial
-\setmonofont{Nimbus Mono}           % 等宽字体：Nimbus Mono
-
-% 开源字体
-%% 方案1：使用 TeX Gyre Pagella
-% \setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
-% \setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
-% \setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
-%% 方案2：使用 Nimbus 字体族
-% \setmainfont{Nimbus Roman No9 L}  % 英文缺省字体：替代 Times New Roman
-% \setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
-% \setmonofont{Nimbus Mono}         % 等宽字体：Nimbus Mono
-```
-#### (不建议修改) 设置假粗体
-在 `style/jluthesis2023.sty` 中
-
-思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。
-
-**使用假粗体的完整设置方法：**
-
-1. **在 documentclass 中设置 AutoFakeBold**：
-   ```latex
-   \documentclass[AutoFakeBold]{ctexart}  % 或其他文档类
-   ```
-
-2. **在 jluthesis2023 包中设置 manualSpine**：
-   ```latex
-   \usepackage[manualSpine]{jluthesis2023}  % 其他选项如hardcopy,amd等
-   ```
-
-3. **重置 CJKmainfont（移除 BoldFont 参数）**：
-   在 `style/jluthesis2023.sty` ，将：
-   ```latex
-   \setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}
-   ```
-   改为：
-   ```latex
-   \setCJKmainfont{Adobe Song Std}  % 移除BoldFont，让AutoFakeBold生效
-   ```
-
-4. **设置手动书脊内容**：
-   由于假粗体可能导致书脊排版异常，需要在主文档中手动设置：
-   ```latex
-   \jluManualSpine{
-       % 这里手动设置书脊的竖排文字内容
-       % 例如：\rotatebox{-90}{论文标题}
-   }
-   ```
-
-**manualSpine 的作用**：当启用假粗体时，自动生成的书脊可能出现字体渲染问题，manualSpine 选项允许用户完全自定义书脊内容，确保书脊显示正常。
-
-## 3.修改内容
+## 3.模板使用
 ### 目录结构
 ```bash
 .
@@ -298,9 +232,9 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \usepackage[amd,hardcopy]{jluthesis2023}
 ```
 
-#### 视频演示
-[twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
-[noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
+> 视频教程<br>
+> [twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
+> [noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
 
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
@@ -325,8 +259,8 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 \citestyle{authoryear}
 ```
 
-#### 视频演示
-[参考文献样式设置](https://www.bilibili.com/video/BV1hqxYz4EgS/)<br>
+> 视频教程<br>
+> [参考文献样式设置](https://www.bilibili.com/video/BV1hqxYz4EgS/)<br>
 
 ## 2.设置论文级别
 在`style/jluthesis2023.sty`中通过修改 `\@jlu@mdtrue` 或 `\@jlu@phdtrue` 来设置论文级别
@@ -335,7 +269,77 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 % \@jlu@phdtrue\@jlu@mdfalse  % 默认设置为博士
 ```
 
-## 3.script 脚本使用
+## 3.字体修改
+### 设置字体
+在 `style/jluthesis2023.sty` 中设置中文字体是开源还是闭源的
+```latex
+% 闭源字体
+\setCJKmainfont{SimSun}                     % 主字体：宋体
+\setCJKsansfont{SimHei}                     % 无衬线：黑体
+\setCJKmonofont{KaiTi}                      % 等宽字体：楷体
+
+% 开源字体
+\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}    % 主字体：Adobe 宋体，当需要粗体时，使用 思源宋粗体
+\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 无衬线：思源黑体，当需要粗体时，使用 思源黑粗体
+\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体等宽字体：Adobe 楷体
+```
+
+在 `style/jluthesis2023.sty` 中设置英文字体是开源还是闭源的
+```latex
+% 闭源字体
+\setmainfont{Times New Roman}       % 英文主要字体是 Times New Roman (衬线)
+\setsansfont{Arial}                 % 英文无衬线字体: Arial
+\setmonofont{Courier New}           % 等宽字体：Courier New
+
+% 开源字体
+%% 方案1：使用 TeX Gyre Pagella
+\setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
+\setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
+\setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
+%% 方案2：使用 Nimbus 字体族
+\setmainfont{Nimbus Roman No9 L}  % 英文缺省字体：替代 Times New Roman
+\setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
+\setmonofont{Nimbus Mono}         % 等宽字体：Nimbus Mono
+```
+### 设置假粗体
+在 `style/jluthesis2023.sty` 中
+
+思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。
+
+**使用假粗体的完整设置方法：**
+
+1. **在 documentclass 中设置 AutoFakeBold**：
+   ```latex
+   \documentclass[AutoFakeBold]{ctexart}  % 或其他文档类
+   ```
+
+2. **在 jluthesis2023 包中设置 manualSpine**：
+   ```latex
+   \usepackage[manualSpine]{jluthesis2023}  % 其他选项如hardcopy,amd等
+   ```
+
+3. **重置 CJKmainfont（移除 BoldFont 参数）**：
+   在 `style/jluthesis2023.sty` ，将：
+   ```latex
+   \setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}
+   ```
+   改为：
+   ```latex
+   \setCJKmainfont{Adobe Song Std}  % 移除BoldFont，让AutoFakeBold生效
+   ```
+
+4. **设置手动书脊内容**：
+   由于假粗体可能导致书脊排版异常，需要在主文档中手动设置：
+   ```latex
+   \jluManualSpine{
+       % 这里手动设置书脊的竖排文字内容
+       % 例如：\rotatebox{-90}{论文标题}
+   }
+   ```
+
+**manualSpine 的作用**：当启用假粗体时，自动生成的书脊可能出现字体渲染问题，manualSpine 选项允许用户完全自定义书脊内容，确保书脊显示正常。
+
+## 4.script 脚本使用
 ### `makeCrosscheckVersion.sh` 论文查重版本生成脚本 
 查重时可能会把原创声明、授权声明、参考文献、致谢等包括进去，可使用 `makeCrosscheckVersion.sh` 制作查重版本，生成的 PDF 文档中原创声明、授权声明、作者简介、致谢四部分的文字被转换为路径，因此这四部分无法导出无法复制，也就不会参与查重。之所以没将参考文献也做成不可复制的，是觉得查重系统会从这里面提取引用。
 
@@ -378,7 +382,8 @@ chmod a+x makeCrosscheckVersion.sh
 ### `makeUnselectable.sh` 转成图片型PDF 
 使用Ghostscript将PDF转换为PostScript格式，再将PostScript转换回PDF，在转换过程中文字被"光栅化"，变成图像
 
-[makeExampleFiles.sh转成图片型PDF](https://www.bilibili.com/video/BV1ttxizcEu1/)<br>
+> 视频教程<br>
+> [makeExampleFiles.sh转成图片型PDF](https://www.bilibili.com/video/BV1ttxizcEu1/)<br>
 
 # 相关项目
 [吉林大学答辩Beamer模板](https://github.com/IammyselfYBX/JLUbeamer)
