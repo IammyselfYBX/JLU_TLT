@@ -70,6 +70,7 @@ $> sudo fc-cache -fv
 ```
 
 > 视频教程<br>
+> [吉林大学硕博模板字体安装](https://www.bilibili.com/video/BV1T6xkzjEX6/)<br>
 > [macOS安装字体](https://www.bilibili.com/video/BV1Px4y1k7eA/)<br>
 > [Arch Linux安装字体](https://www.bilibili.com/video/BV1ea4y1N7TG/)<br>
 > [Linux 字体操作](https://www.bilibili.com/video/BV1N34y167vb/)<br>
