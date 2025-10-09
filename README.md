@@ -1,6 +1,10 @@
-# JLU 论文模板
+# 吉林大学硕博论文 TeX 模板
+Template Package for Writing Thesis for Jilin University by JiWei Zhen.
+
 # 免责声明
 > 此模板为个人根据学校要求实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
+
+
 
 # 学位论文撰写规范
 [吉林大学研究生学位论文撰写及装帧规范(2023年03)](http://lib.jlu.edu.cn/portal/service/lwtjxt/2666.aspx)<br>
@@ -52,8 +56,76 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 - [方法二] 在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 `PATH` 环境变量。<br/> 
 
 ### 字体说明
-- 思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。使用假粗体需在 documentclass 中设置 AutoFakeBold， 在 jluthesis2023 中设置 manualSpine，并需重置 CJKmainfont
+具体字体说明见 [字体说明](fonts/README.md)
 
+#### (不建议修改) 字体设置
+在 `style/jluthesis2023.sty` 中设置中文字体是开源还是闭源的
+```latex
+% 闭源字体
+\setCJKmainfont{SimSun}                     % 主字体：宋体
+\setCJKsansfont{SimHei}                     % 无衬线：黑体
+\setCJKmonofont{KaiTi}                      % 等宽字体：楷体
+
+% 开源字体
+\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}    % 主字体：Adobe 宋体，当需要粗体时，使用 思源宋粗体
+\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 无衬线：思源黑体，当需要粗体时，使用 思源黑粗体
+\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体等宽字体：Adobe 楷体
+```
+
+在 `style/jluthesis2023.sty` 中设置英文字体是开源还是闭源的
+```latex
+% 闭源字体
+\setmainfont{Times New Roman}       % 英文主要字体是Times New Roman
+\setsansfont{Arial}                 % 英文无衬线字体: Arial
+\setmonofont{Nimbus Mono}           % 等宽字体：Nimbus Mono
+
+% 开源字体
+%% 方案1：使用 TeX Gyre Pagella
+% \setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
+% \setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
+% \setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
+%% 方案2：使用 Nimbus 字体族
+% \setmainfont{Nimbus Roman No9 L}  % 英文缺省字体：替代 Times New Roman
+% \setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
+% \setmonofont{Nimbus Mono}         % 等宽字体：Nimbus Mono
+```
+#### (不建议修改) 设置假粗体
+在 `style/jluthesis2023.sty` 中
+
+思源宋体粗体可能看起来与 MS Word 中的粗体差别较大。若以假粗体实现粗体来生成的文档大概更接近 MS Word 的感觉，但似乎偶尔会出现奇奇怪怪的问题 (如部分字无法选中、该加粗的字没有加粗、不该加粗的字被加粗了等)，不过好在只有封面、摘要、章节题目等少数几个地方需要使用粗体。
+
+**使用假粗体的完整设置方法：**
+
+1. **在 documentclass 中设置 AutoFakeBold**：
+   ```latex
+   \documentclass[AutoFakeBold]{ctexart}  % 或其他文档类
+   ```
+
+2. **在 jluthesis2023 包中设置 manualSpine**：
+   ```latex
+   \usepackage[manualSpine]{jluthesis2023}  % 其他选项如hardcopy,amd等
+   ```
+
+3. **重置 CJKmainfont（移除 BoldFont 参数）**：
+   在 `style/jluthesis2023.sty` ，将：
+   ```latex
+   \setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}
+   ```
+   改为：
+   ```latex
+   \setCJKmainfont{Adobe Song Std}  % 移除BoldFont，让AutoFakeBold生效
+   ```
+
+4. **设置手动书脊内容**：
+   由于假粗体可能导致书脊排版异常，需要在主文档中手动设置：
+   ```latex
+   \jluManualSpine{
+       % 这里手动设置书脊的竖排文字内容
+       % 例如：\rotatebox{-90}{论文标题}
+   }
+   ```
+
+**manualSpine 的作用**：当启用假粗体时，自动生成的书脊可能出现字体渲染问题，manualSpine 选项允许用户完全自定义书脊内容，确保书脊显示正常。
 
 ## 3.修改内容
 ### 目录结构
@@ -89,13 +161,13 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 
 ### 修改正文
 #### 引入章节
-正文内容在 `part` 目录下的各个 tex 文件中，按需新建。
+正文内容在 [part](part) 目录下的各个 tex 文件中，按需新建。
 ```bash
 $> cd part 
 $> touch chapter1绪论.tex chapter2相关理论与关键技术.tex
 ```
 
-然后在 `main.tex` 中按需引入 `part` 目录下的各个 tex 文件,具体格式如下
+然后在 `main.tex` 中按需引入 [part](part) 目录下的各个 tex 文件,具体格式如下
 
 ```latex
 \input{part/chapter1绪论.tex} 				% 第1章 绪论
@@ -112,6 +184,13 @@ $> touch chapter1绪论.tex chapter2相关理论与关键技术.tex
   \label{fig:lengthscale}
 \end{figure}
 ```
+
+#### 居中
+##### 首行缩进
+所有的**居中行**都需要使用`\noindent`来消除首行缩进，并且要在变换字号的命令如 `\sihao` 之后使用，因为`\parindent`被修改了
+##### 换行
+`{\centering }`需要使用`\\`来断行居中
+
 
 ## 4.编译
 ### \[推荐\] 使用latexmk
