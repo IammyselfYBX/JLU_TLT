@@ -65,7 +65,7 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 ```bash
 .
 |-- fonts 				# [第三方]存放字体
-|-- etc					# [不要修改] 暂时未归类的文件
+|-- etc					# [不要修改] 未归类的文件
 |-- scripts 			# [不要修改] 常用脚本
 |-- style               # [谨慎修改] 样式文件
 |    |--jluthesis2023.sty 	# 2023版的模板文件
@@ -235,6 +235,8 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 > [twoSideCover双页封面（用于制作封皮）](https://www.bilibili.com/video/BV18BxYzdETP/)<br>
 > [noBlankPages提交到图书馆学位论文系统](https://www.bilibili.com/video/BV18BxYzdEKQ/)<br>
 > [nobox封面无框线和书脊](https://www.bilibili.com/video/BV1CsxrzqEWB/)<br>
+
+更多效果可见[示例](etc/example_files/)目录下的示例文件。
 
 #### 打印设置
 在`main.tex`中设置 `documentclass` 的参数 `twoside` 或 `oneside` 来设置打印模式。
