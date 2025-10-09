@@ -67,9 +67,11 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 |    |-- gbt7714.sty		# 中国国家标准GB/T 7714的参考文献格式
 |    |-- gbt7714-author-year.bst 	# 参考文献作者年的样式
 |    `-- gbt7714-numerical.bst 		# 参考文献数字的样式
-|-- figuers 			# [自行修改] 存放图片
+|-- figures 			# [自行修改] 存放图片
+|    |-- module             # [不要修改] 封面LOGO等图标
 |    |-- author.png         # [自行修改] 作者签名
-|    `-- author_tutor.png   # [自行修改] 导师签名
+|    |-- author_tutor.png   # [自行修改] 导师签名
+|    `-- chapter            # [自行修改] 各个章节的图片
 |-- jluthesis.cfg 		# [自行修改] 配置文件
 |-- main.tex 			# [自行修改] 主文件
 |-- part 				# [自行修改] 各部分文件
@@ -81,11 +83,12 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 `jluthesis.cfg`文件包含了论文作者、专业、日期等信息，请根据实际情况修改。
 
 ### 签名
-在 `figuers` 目录下放置作者和导师的签名图片，命名为 `author.png` 和 `author_tutor.png`
+在 `figures` 目录下放置作者和导师的签名图片，命名为 `author.png` 和 `author_tutor.png`
 
 注意：文件格式必须是 png 。
 
 ### 修改正文
+#### 引入章节
 正文内容在 `part` 目录下的各个 tex 文件中，按需新建。
 ```bash
 $> cd part 
@@ -99,6 +102,16 @@ $> touch chapter1绪论.tex chapter2相关理论与关键技术.tex
 \input{part/chapter2相关理论与关键技术.tex}	 % 第2章 相关理论与关键技术
 ```
 
+#### 插入图片
+为了保证项目的整洁，建议将各个章节用到的图片放在 `figures` 目录下,然后引入图片的方式如下
+```latex 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/introduction/RESNet18.png} \\
+  \caption[ResNet18网络结构示意图]{ResNet18是一个深度卷积神经网络结构} 
+  \label{fig:lengthscale}
+\end{figure}
+```
 
 ## 4.编译
 ### \[推荐\] 使用latexmk
