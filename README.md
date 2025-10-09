@@ -56,7 +56,7 @@ $> mkfontscale && mkfontdir && fc-cache -fv
 > [[Linux] Latex使用Times New Roman](https://www.bilibili.com/video/BV1i44y1r7HW)<br>
 
 ### Windows方式
-- [方法一] 将 `fonts` 目录下的字体复制到 `C:\Windows\Fonts`
+- [方法一] 将 [fonts](fonts) 目录下的字体复制到 `C:\Windows\Fonts`
 
 - [方法二] 在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 `PATH` 环境变量。<br/> 
 
@@ -336,8 +336,8 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
    由于假粗体可能导致书脊排版异常，需要在主文档中手动设置：
    ```latex
    \jluManualSpine{
-       % 这里手动设置书脊的竖排文字内容
-       % 例如：\rotatebox{-90}{论文标题}
+	   % 这里手动设置书脊的竖排文字内容
+	   % 例如：\rotatebox{-90}{论文标题}
    }
    ```
 
