@@ -1,5 +1,5 @@
 # 吉林大学硕博论文 TeX 模板
-Template Package for Writing Thesis for Jilin University by JiWei Zhen.
+Template Package for Writing Thesis for Jilin University by Jiwei Zhen.
 
 # 免责声明
 > 此模板为个人根据学校要求实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
