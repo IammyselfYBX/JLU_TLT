@@ -1,39 +1,10 @@
-% Template Package for Writing Thesis for Jilin University by JiWei Zhen.
-% 吉林大学硕博论文 TeX 模板
-% 
 % 1. 版权声明
 %   此模板写于 2024 年 10 月 08 日，
 %   主要参考 jluthesis 及 2024-06-13 版吉林大学研究生学位论文撰写及装帧规范 http://lib-old.jlu.edu.cn/portal/service/lwtjxt/2666.aspx。
 % 2.编译说明
 %   使用 XeTeX 系统处理源文件，方便直接使用系统的 truetype 或 opentype 字体
 %   参考了 XJTUthesis.cls, HIT-pluto-PhD, 
-% 3.可用选项
-% 可用选项有 debug|ebook|hardcopy, amd|pmd|phdplain|phdfancy, nobox, manualSpine, onlyCover, twoSideCover, noBlankPages.
-%   debug 生成的PDF带框线，方便调试
-%   ebook 带彩色文字的PDF
-%   hardcopy 无彩色文字的PDF
-%   amd 学硕使用
-%   pmd 专硕使用
-%   phdplain 博士论文简装
-%   phdfancy 博士论文精装
-%   nobox 输出的封面无框线和书脊
-%   manualSpine 手动输出书脊,需配合\jluManualSpine命令
-%   onlyCover 仅输出封面页
-%   twoSideCover 输出双页封面
-%   noBlankPages 去掉空白页，主要用于上传到图书馆学位论文系统
-%   默认为 hardcopy,amd，且nobox=false，manualSpine=false，onlyCover=false，twoSideCover=false, noBlankPages=false
-%   双面印刷需在documentclass选项中声明twoside
-%   单面印刷需在documentclass选项中声明oneside
-%   选项使用举例如下
-%   \usepackage[ebook,nobox,amd]{jluthesis2023}%
-%   \usepackage[hardcopy,phdplain,twoSideCover,onlyCover]{jluthesis2023}%
-%
-% N.B.
-% @: 所有的居中行都需要使用\noindent来消除首行缩进，
-%    并且要在变换字号的命令如 \sihao 之后使用，因为\parindent被修改了
-% @: {\centering }需要使用\\来断行居中
-% @: 
-% 
+
 % 4.参考文献
 
 
@@ -412,97 +383,139 @@
 \fi
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 字体设置
 %\RequirePackage{ctex}
-\RequirePackage{xeCJK}
+\RequirePackage{xeCJK}  % 直接使用 xeCJK 而不是 ctex，是为了：获得更精细的控制权,避免 ctex 的一些默认设置干扰自定义配置
 %\RequirePackage[no-math]{fontspec}
-\PassOptionsToPackage{no-math}{fontspec}
+\PassOptionsToPackage{no-math}{fontspec} % fontspec 不要处理数学字体，保留 LaTeX 默认的数学字体设置
 
 % 设定中文
 \defaultfontfeatures{Mapping=tex-text}  % 要在设定字体之前
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+\XeTeXlinebreaklocale "zh"              % 设置 XeTeX 的换行规则为中文模式
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt % 设置换行时的弹性间距,在中英文混排时，允许在必要时微调字符间距来实现更好的换行效果
+    %% 0pt：基础间距为0
+    %% plus 1pt：最大可以拉伸1pt
+    %% minus 0.1pt：最大可以压缩0.1pt
 
-% \setCJKmainfont{SimSun}   % 宋体
-\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}   % 中文缺省字体
-\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 中文无衬线字体Adobe Heiti Std
-\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体
+%%%%%%%%%%%%%%%%%%%%%%%% 中文字体设置 %%%%%%%%%%%%%%%%%%%%%%%%
+% 闭源字体
+% \setCJKmainfont{SimSun}                     % 主字体：宋体
+% \setCJKsansfont{SimHei}                     % 无衬线：黑体
+% \setCJKmonofont{KaiTi}                      % 等宽字体：楷体
 
-% \setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
-% \setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
-% \setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
-\setmainfont{Times New Roman}       % 英文主要字体是Times New Roman
-\setsansfont{Arial}                 % 英文无衬线字体: Arial
-\setmonofont{Nimbus Mono}           % 等宽字体：Nimbus Mono
-% \setmainfont{Nimbus Roman No9 L}      % 英文缺省字体：替代 Times New Roman
-% \setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
-% \setmonofont{Nimbus Mono}       % 等宽字体：Nimbus Mono
+%% 命名字体族定义 \song(宋体) \kai(楷体) \li (隶书) \hei (黑体) \fs (仿宋)
+    %% {\song 这是宋体文字}
+    %% {\hei 这是黑体文字}  
+    %% {\kai 这是楷体文字}
+    %% {\fs 这是仿宋文字}
+    %% {\li 这是隶书文字}
+% \setCJKfamilyfont{song}{SimSun}             % 宋体族
+% \newcommand*{\song}{\CJKfamily{song}}       % 定义\song命令
+% \setCJKfamilyfont{kaiti}{KaiTi}             % 楷体族  
+% \newcommand*{\kai}{\CJKfamily{kaiti}}       % 定义\kai命令
+% \setCJKfamilyfont{heiti}{SimHei}            % 黑体族
+% \newcommand*{\hei}{\CJKfamily{heiti}}       % 定义\hei命令
+% \setCJKfamilyfont{lishu}{LiSu}              % 隶书族
+% \newcommand*{\lishu}{\CJKfamily{lishu}}     % 定义\lishu命令
+% \setCJKfamilyfont{fs}{FangSong}             % 仿宋族
+% \newcommand*{\fs}{\CJKfamily{fs}}           % 定义\fs命令
 
-
-% we also define \song \kai for our habit
-\setCJKfamilyfont{song}{Adobe Song Std} 
+% 开源字体
+\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}    % 主字体：Adobe 宋体，当需要粗体时，使用 思源宋粗体
+\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 无衬线：思源黑体，当需要粗体时，使用 思源黑粗体
+\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体等宽字体：Adobe 楷体
+%% 命名字体族定义 \song(宋体) \kai(楷体) \li (隶书) \hei (黑体) \fs (仿宋)
+    %% {\song 这是宋体文字}
+    %% {\hei 这是黑体文字}  
+    %% {\kai 这是楷体文字}
+    %% {\fs 这是仿宋文字}
+    %% {\li 这是隶书文字}
+\setCJKfamilyfont{song}{Adobe Song Std}     % 宋体族
 \newcommand*{\song}{\CJKfamily{song}}
-\setCJKfamilyfont{kaiti}{Adobe Kaiti Std} 
+\setCJKfamilyfont{kaiti}{Adobe Kaiti Std}   % 楷体族
 \newcommand*{\kai}{\CJKfamily{kaiti}}
-% define \li (隶书) \hei (黑体) \fs (仿宋)
-\setCJKfamilyfont{lishu}{LiSu}
+\setCJKfamilyfont{lishu}{LiSu}              % 隶书族
 \newcommand*{\li}{\CJKfamily{lishu}}
-\setCJKfamilyfont{heiti}{Source Han Sans SC} % Adobe Heiti Std
+\setCJKfamilyfont{heiti}{Source Han Sans SC}% 黑体族
 \newcommand*{\hei}{\CJKfamily{heiti}}
-\setCJKfamilyfont{fs}{Adobe Fangsong Std} 
+\setCJKfamilyfont{fs}{Adobe Fangsong Std}   % 仿宋族
 \newcommand*{\fs}{\CJKfamily{fs}}
 
 
-% 中文字体声明 (cf. ctex.sty), 
-% ??：现在的设定缩进的方法很笨，等以后再想法改进
+%%%%%%%%%%%%%%%%%%%%%%%% 中文字号设置 %%%%%%%%%%%%%%%%%%%%%%%%
+% 硬编码
+% 根据(ctex.sty)的中文字号声明，采用硬编码的方式定义中文字号和对应的行距和段首缩进
 % \baselinskip usually is set to 1.2 times of font size by experience
 \newcommand{\chuhao}{
-    \fontsize{42.16}{50.59}\selectfont
-    \setlength{\parindent}{84.32pt plus 1pt minus 0pt}} % 初号字  42bp
+    \fontsize{42.16}{50.59}\selectfont                  % 初号字  42bp
+    \setlength{\parindent}{84.32pt plus 1pt minus 0pt}} % 首缩进84bp(42x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaochu}{
-    \fontsize{36.14}{43.36}\selectfont
-    \setlength{\parindent}{72.28pt plus 1pt minus 0pt}} % 小初号  36bp
+    \fontsize{36.14}{43.36}\selectfont                  % 小初号字  36bp
+    \setlength{\parindent}{72.28pt plus 1pt minus 0pt}} % 首缩进72bp(36x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\yihao}{
-    \fontsize{26.10}{31.32}\selectfont
-    \setlength{\parindent}{52.20pt plus 1pt minus 0pt}} % 一号字  26bp
+    \fontsize{26.10}{31.32}\selectfont                  % 一号字  26bp
+    \setlength{\parindent}{52.20pt plus 1pt minus 0pt}} % 首缩进52bp(26x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaoyi}{
-    \fontsize{24.09}{28.91}\selectfont
-    \setlength{\parindent}{48.18pt plus 1pt minus 0pt}} % 小一号  24bp
+    \fontsize{24.09}{28.91}\selectfont                  % 小一号  24bp
+    \setlength{\parindent}{48.18pt plus 1pt minus 0pt}} % 首缩进48bp(24x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\erhao}{
-    \fontsize{22.08}{26.50}\selectfont
-    \setlength{\parindent}{44.16pt plus 1pt minus 0pt}} % 二号字  22bp
+    \fontsize{22.08}{26.50}\selectfont                  % 二号字  22bp
+    \setlength{\parindent}{44.16pt plus 1pt minus 0pt}} % 首缩进44bp(22x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaoer}{
-    \fontsize{18.07}{21.68}\selectfont
-    \setlength{\parindent}{36.14pt plus 1pt minus 0pt}} % 小二号  18bp
+    \fontsize{18.07}{21.68}\selectfont                  % 小二号  18bp
+    \setlength{\parindent}{36.14pt plus 1pt minus 0pt}} % 首缩进36bp(18x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\sanhao}{
-    \fontsize{16.06}{19.27}\selectfont
-    \setlength{\parindent}{32.12pt plus 1pt minus 0pt}} % 三号字  16bp
+    \fontsize{16.06}{19.27}\selectfont                  % 三号字  16bp
+    \setlength{\parindent}{32.12pt plus 1pt minus 0pt}} % 首缩进32bp(16x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaosan}{
-    \fontsize{15.06}{18.07}\selectfont
-    \setlength{\parindent}{30.12pt plus 1pt minus 0pt}} % 小三号  15bp
+    \fontsize{15.06}{18.07}\selectfont                  % 小三号  15bp
+    \setlength{\parindent}{30.12pt plus 1pt minus 0pt}} % 首缩进30bp(15x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\sihao}{
-    \fontsize{14.05}{16.86}\selectfont
-    \setlength{\parindent}{28.10pt plus 1pt minus 0pt}} % 四号字  14bp
+    \fontsize{14.05}{16.86}\selectfont                  % 四号字  14bp
+    \setlength{\parindent}{28.10pt plus 1pt minus 0pt}} % 首缩进28bp(14x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaosi}{
-    \fontsize{12.05}{14.45}\selectfont
-    \setlength{\parindent}{24.10pt plus 1pt minus 0pt}} % 小四号  12bp
+    \fontsize{12.05}{14.45}\selectfont                  % 小四号  12bp
+    \setlength{\parindent}{24.10pt plus 1pt minus 0pt}} % 首缩进24bp(12x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\wuhao}{
-    \fontsize{10.54}{12.65}\selectfont
-    \setlength{\parindent}{21.08pt plus 1pt minus 0pt}} % 五号字10.5bp
+    \fontsize{10.54}{12.65}\selectfont                  % 五号字  10.5bp
+    \setlength{\parindent}{21.08pt plus 1pt minus 0pt}} % 首缩进21bp(10.5x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaowu}{
-    \fontsize{9.03}{10.84}\selectfont
-    \setlength{\parindent}{18.06pt plus 1pt minus 0pt}} % 小五号   9bp
+    \fontsize{9.03}{10.84}\selectfont                   % 小五号   9bp
+    \setlength{\parindent}{18.06pt plus 1pt minus 0pt}} % 首缩进18bp(9x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\liuhao}{
-    \fontsize{7.53}{9.03}\selectfont
-    \setlength{\parindent}{15.06pt plus 1pt minus 0pt}} % 六号字 7.5bp
+    \fontsize{7.53}{9.03}\selectfont                    % 六号字 7.5bp
+    \setlength{\parindent}{15.06pt plus 1pt minus 0pt}} % 首缩进15bp(7.5x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\xiaoliu}{
-    \fontsize{6.52}{7.83}\selectfont
-    \setlength{\parindent}{13.04pt plus 1pt minus 0pt}} % 小六号 6.5bp
+    \fontsize{6.52}{7.83}\selectfont                    % 小六号 6.5bp
+    \setlength{\parindent}{13.04pt plus 1pt minus 0pt}} % 首缩进13bp(6.5x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\qihao}{
-    \fontsize{5.52}{6.62}\selectfont
-    \setlength{\parindent}{11.04pt plus 1pt minus 0pt}} % 七号字 5.5bp
+    \fontsize{5.52}{6.62}\selectfont                    % 七号字 5.5bp
+    \setlength{\parindent}{11.04pt plus 1pt minus 0pt}} % 首缩进11bp(5.5x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
 \newcommand{\bahao}{
-    \fontsize{5.02}{6.02}\selectfont
-    \setlength{\parindent}{10.04pt plus 1pt minus 0pt}} % 八号字   5bp
+    \fontsize{5.02}{6.02}\selectfont                    % 八号字   5bp
+    \setlength{\parindent}{10.04pt plus 1pt minus 0pt}} % 首缩进10bp(5x2), 允许拉伸1bp(plus 1pt), 禁止压缩(minus 0pt)
+
+%%%%%%%%%%%%%%%%%%%%%%%% 英文字体设置 %%%%%%%%%%%%%%%%%%%%%%%%
+% 闭源字体
+\setmainfont{Times New Roman}       % 英文主要字体是 Times New Roman (衬线)
+\setsansfont{Arial}                 % 英文无衬线字体: Arial
+\setmonofont{Courier New}           % 等宽字体：Courier New
+
+% 开源字体
+%% 方案1：使用 TeX Gyre Pagella
+% \setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
+% \setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
+% \setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
+%% 方案2：使用 Nimbus 字体族
+% \setmainfont{Nimbus Roman No9 L}  % 英文缺省字体：替代 Times New Roman
+% \setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
+% \setmonofont{Nimbus Mono}         % 等宽字体：Nimbus Mono
+
+
+
+
+
 
 
 %% redefine following font size commands to accompany Chinese
@@ -1487,5 +1500,3 @@
 %%% coding: utf-8
 %%% mode: latex
 %%% End:
-
-
