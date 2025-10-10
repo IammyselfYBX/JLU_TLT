@@ -3,7 +3,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/network/members)
 [![GitHub issues](https://img.shields.io/github/issues/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/issues)
 [![GitHub watchers](https://img.shields.io/github/watchers/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/watchers)
-[![GitHub license](https://img.shields.io/github/license/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/blob/master/LICENSE)
 [![Repo Size](https://img.shields.io/github/repo-size/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT)
 [![Contributors](https://img.shields.io/github/contributors/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/graphs/contributors)
 
@@ -111,6 +111,7 @@ $> sudo fc-cache -fv
 |-- main.tex 			# [自行修改] 主文件
 |-- part 				# [自行修改] 各部分文件
 |-- references.bib 		# [自行修改] 参考文献
+|-- LICENSE 			  # 开源协议
 `-- README.md 			# 说明文档
 ```
 
