@@ -4,6 +4,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/issues)
 [![GitHub watchers](https://img.shields.io/github/watchers/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/watchers)
 [![GitHub license](https://img.shields.io/github/license/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/blob/main/LICENSE)
+[![Repo Size](https://img.shields.io/github/repo-size/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT)
+[![Contributors](https://img.shields.io/github/contributors/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/graphs/contributors)
+
+
 Template Package for Writing Thesis for Jilin University by Jiwei Zhen.
 
 # 免责声明
