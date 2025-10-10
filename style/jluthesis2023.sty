@@ -599,9 +599,8 @@
 
 
 % 图题使用悬挂格式
-\RequirePackage[format=hang,font=normalsize]{caption}
-% 使用黑体
-\captionsetup{textfont=sf,labelfont=sf}
+\RequirePackage[format=hang,font=normalsize]{caption} % 字号: normalsize
+\captionsetup{textfont=sf,labelfont=sf} % 图题和表题均采用黑体字
 % 图题的行距
 \captionsetup[figure]{font={stretch=\@jlu@normalStretch}}
 \captionsetup[table]{font={stretch=\@jlu@normalStretch}} %% change 1.2 as you like
@@ -819,20 +818,32 @@
 
 
 % 重定义方程，图，表的序号为方程2.1、图2.1、表2.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              编号和引用设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. 各类型内容编号格式设置
+% 设置格式：章节序号.编号（如 图，表的序号为方程2.1、图2.1、表2.1）
+% \ifnum \c@chapter>\z@ : 检查是否在章节中
+% \thechapter. : 添加章节号和点
+% \@arabic\c@... : 使用阿拉伯数字显示计数器
+
+% 1.1 公式编号
 \renewcommand{\theequation}{%
     \ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@equation}
+
+% 1.2 图片编号
 \renewcommand{\thefigure}{%
     \ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@figure}
+
+% 1.3 表格编号
 \renewcommand{\thetable}{%
     \ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@table}
 
-
-
-% modify \autoref to use Chinese name mark to refer to
-\renewcommand{\figureautorefname}{\figurename}
-\renewcommand{\tableautorefname}{\tablename}
-\renewcommand{\equationautorefname}{\equationname}
-\newcommand{\algorithmautorefname}{算法}
+% 2. 自动引用名称设置（用于 \autoref 命令）
+\renewcommand{\figureautorefname}{\figurename}      % 图
+\renewcommand{\tableautorefname}{\tablename}        % 表
+\renewcommand{\equationautorefname}{\equationname}  % 公式
+\newcommand{\algorithmautorefname}{算法}            % 算法
 
 
 % 定义一个公式环境，使公式和标号之间加一串点
@@ -1358,9 +1369,9 @@
 
     \chapter*{摘\qquad 要}
     \vspace{1em}
-    % \begin{center}
-    %     \sihao \bfseries \rmfamily \@jlu@cTitle
-    % \end{center}
+    \begin{center}
+        \sihao \bfseries \rmfamily \@jlu@cTitle
+    \end{center}
     
     \message{^^JjluPageNum jluCAbstract \therealpage ^^J}
 
@@ -1384,9 +1395,9 @@
 
     \chapter*{Abstract}
     \vspace{1em}
-    % \begin{center}
-    %     \sihao \bfseries \@jlu@eTitle
-    % \end{center}
+    \begin{center}
+        \sihao \bfseries \@jlu@eTitle
+    \end{center}
   
     {\xiaosi \@jlu@eAbstract}
 
