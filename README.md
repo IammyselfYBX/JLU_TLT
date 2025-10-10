@@ -1,4 +1,9 @@
 # 吉林大学硕博论文 TeX 模板
+[![GitHub stars](https://img.shields.io/github/stars/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/issues)
+[![GitHub watchers](https://img.shields.io/github/watchers/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/watchers)
+[![GitHub license](https://img.shields.io/github/license/IammyselfYBX/JLU_TLT)](https://github.com/IammyselfYBX/JLU_TLT/blob/main/LICENSE)
 Template Package for Writing Thesis for Jilin University by Jiwei Zhen.
 
 # 免责声明
