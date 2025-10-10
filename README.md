@@ -139,6 +139,17 @@ $> touch chapter1绪论.tex chapter2相关理论与关键技术.tex
 \end{figure}
 ```
 
+#### 插入公式
+根据[学位论文撰写及装帧规范(2023年3月)](etc/吉林大学研究生学位论文撰写及装帧规范(2024-06-13)/附件1：吉林大学研究生学位论文撰写及装帧规范.pdf)中，3.8节的规定`公式的编号右端对齐，公式与编号之间用“......”连接。`因此定义新的关键字`dotsequation`，使用如下
+```latex
+\begin{dotsequation}\label{eq:singular_poisson_equation}
+    \begin{aligned}
+        -\nabla^2 u = \delta(x,y)   &\quad \text{in}\ \Omega = [-1,1] \times [-1,1]\\
+                u = 0             &\quad \text{on}\ \partial \Omega
+    \end{aligned}    
+\end{dotsequation}
+```
+
 #### 居中
 ##### 首行缩进
 所有的**居中行**都需要使用`\noindent`来消除首行缩进，并且要在变换字号的命令如 `\sihao` 之后使用，因为`\parindent`被修改了
@@ -295,6 +306,14 @@ https://github.com/user-attachments/assets/d924c7a5-e1f0-4cb3-8320-bd9d696e0e1d
 
 
 ## 3.字体修改
+根据[学位论文撰写及装帧规范(2023年3月)](etc/吉林大学研究生学位论文撰写及装帧规范(2024-06-13)/附件1：吉林大学研究生学位论文撰写及装帧规范.pdf)中，3.6节的规定`论文字体一律采用宋体字，字号大小可根据情况选用 5 号字、小 4 号字或 4 号字。各章节和标题的字号可略大于正文一个字号。`；第3.8节规定`图题和表题均采用黑体字，字号与正文相同`；第3.13节规定`论文题目采用宋体居中排列，字号比摘要正文字号略大一号。摘要正文采用宋体字，字号与论文正文字号相同。`。
+
+本模板中
+- 章节格式：三号、粗体、居中、有衬线字体宋体(开源字体`Adobe Song Std`)
+- 正文：小四，宋体(开源字体`Adobe Song Std`)
+- 表格、图表标题：小四，黑体(开源字体`Source Han Sans SC`)
+- 摘要：四号、居中、宋体(开源字体`Adobe Song Std`)
+
 ### 设置字体
 在 `style/jluthesis2023.sty` 中设置中文字体是开源还是闭源的
 ```latex
